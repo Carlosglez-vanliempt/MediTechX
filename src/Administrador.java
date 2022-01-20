@@ -146,16 +146,16 @@ public class Administrador extends Persona {
         boolean mismoMes = false;
         int maxDias = 0;
 
-        String dia,mes,año;
+        String dia,mes,anio;
 
-        //año
+        //anio
         do {
-            System.out.print("Introduce el año de la cita:");
-            año = input.nextLine();
-            if (Integer.parseInt(año) >= LocalDateTime.now().getYear()) {
+            System.out.print("Introduce el anio de la cita:");
+            anio = input.nextLine();
+            if (Integer.parseInt(anio) >= LocalDateTime.now().getYear()) {
                 salir = true;
-                if(Integer.parseInt(año) == LocalDateTime.now().getYear()) mismoAnio = true;
-                if ((Integer.parseInt(año) % 4 == 0) && ((Integer.parseInt(año) % 100 != 0) || (Integer.parseInt(año) % 400 == 0)) ) bisiesto = true;
+                if(Integer.parseInt(anio) == LocalDateTime.now().getYear()) mismoAnio = true;
+                if ((Integer.parseInt(anio) % 4 == 0) && ((Integer.parseInt(anio) % 100 != 0) || (Integer.parseInt(anio) % 400 == 0)) ) bisiesto = true;
             }
         } while (!salir) ;
         salir = false;
@@ -219,7 +219,7 @@ public class Administrador extends Persona {
         if (Integer.parseInt(mes) < 10) mes = "0"+Integer.parseInt(mes);
         if (Integer.parseInt(dia) < 10) dia = "0"+Integer.parseInt(dia);
 
-        return (dia + "-"+mes+"-"+año);
+        return (dia + "-"+mes+"-"+anio);
     }
 
     public void generarAdministrador(){
@@ -227,8 +227,8 @@ public class Administrador extends Persona {
 
         String email = verificadorEmail();
         //GENERAR AUTOMATICO Y MANDAR POR CORREO
-        System.out.print("Introduce la contraseña:");
-        String contraseña = input.nextLine();
+        System.out.print("Introduce la contrasenia:");
+        String contrasenia = input.nextLine();
         System.out.print("Introduce el dni:");
         String dni = input.nextLine();
         System.out.print("Introduce el nombre:");
@@ -242,7 +242,7 @@ public class Administrador extends Persona {
 
         String ruta = "src/ficheros/Administradores/" + dni + ".jsonl";
 
-        escribirLogin(new Persona(email,contraseña,dni,"1"));
+        escribirLogin(new Persona(email,contrasenia,dni,"1"));
         escribirPersona(new Administrador(email,dni,nombre,apellidos,fechaNacimiento,genero),ruta);
     }
 
@@ -250,8 +250,8 @@ public class Administrador extends Persona {
         Scanner input = new Scanner(System.in);
         String email = verificadorEmail();
         //GENERAR AUTOMATICO Y MANDAR POR CORREO
-        System.out.print("Introduce la contraseña:");
-        String contraseña = input.nextLine();
+        System.out.print("Introduce la contrasenia:");
+        String contrasenia = input.nextLine();
         System.out.print("Introduce el dni:");
         String dni = input.nextLine();
         System.out.print("Introduce el nombre:");
@@ -267,7 +267,7 @@ public class Administrador extends Persona {
         System.out.print("Introduce el nº de colegialo:");
         int no_colegialo = input.nextInt();
         String ruta = "src/ficheros/Medicos/" + dni + ".jsonl";
-        escribirLogin(new Persona(email,contraseña,dni,"2"));
+        escribirLogin(new Persona(email,contrasenia,dni,"2"));
         escribirPersona(new Medico(email,dni,nombre,apellidos,fechaNacimiento,genero, no_seguridad_social, no_colegialo),ruta);
     }
 
@@ -276,8 +276,8 @@ public class Administrador extends Persona {
 
         String email = verificadorEmail();
         //GENERAR AUTOMATICO Y MANDAR POR CORREO
-        System.out.print("Introduce la contraseña:");
-        String contraseña = input.nextLine();
+        System.out.print("Introduce la contrasenia:");
+        String contrasenia = input.nextLine();
         System.out.print("Introduce el dni:");
         String dni = input.nextLine();
         System.out.print("Introduce el nombre:");
@@ -302,7 +302,7 @@ public class Administrador extends Persona {
 
         String ruta = "src/ficheros/Pacientes/" + dni + ".jsonl";
 
-        escribirLogin(new Persona(email,contraseña,dni,"3"));
+        escribirLogin(new Persona(email,contrasenia,dni,"3"));
         escribirPersona(new Paciente(email,dni,nombre,apellidos,fechaNacimiento,genero,altura,peso,patologías,alergias,grupo_sanguineo),ruta);
     }
 
@@ -311,8 +311,8 @@ public class Administrador extends Persona {
 
         String email = verificadorEmail();
         //GENERAR AUTOMATICO Y MANDAR POR CORREO
-        System.out.print("Introduce la contraseña:");
-        String contraseña = input.nextLine();
+        System.out.print("Introduce la contrasenia:");
+        String contrasenia = input.nextLine();
         System.out.print("Introduce el dni:");
         String dni = input.nextLine();
         System.out.print("Introduce el nombre:");
@@ -326,7 +326,7 @@ public class Administrador extends Persona {
         System.out.print("Introduce número de la seguridad social");
         int no_seguridad_social = input.nextInt();
         String ruta = "src/ficheros/Recepcionistas/" + dni + ".jsonl";
-        escribirLogin(new Persona(email,contraseña,dni,"4"));
+        escribirLogin(new Persona(email,contrasenia,dni,"4"));
         escribirPersona(new Recepcionista(email,dni,nombre,apellidos,fechaNacimiento,genero,no_seguridad_social),ruta);
     }
 
@@ -426,7 +426,7 @@ public class Administrador extends Persona {
             String menu = "0";
             String ruta;
             Persona personaFicheroAntiguo,personaFicheroNuevo;
-            String email,contraseña,dni,nombre,apellido,fechaNacimiento,genero;
+            String email,contrasenia,dni,nombre,apellido,fechaNacimiento,genero;
             int no_ss,no_cole;
             double altura, peso;
             String patologías, alergias, grupo_sanguineo;
@@ -440,7 +440,7 @@ public class Administrador extends Persona {
                         System.out.println("\n\n----Modificar un Administrador----");
                         System.out.print(
                             "1 - Email\n" +
-                            "2 - Contraseña\n" +
+                            "2 - Contrasenia\n" +
                             "3 - DNI\n" +
                             "4 - Nombre\n" +
                             "5 - Apellidos\n" +
@@ -458,9 +458,9 @@ public class Administrador extends Persona {
                                 personaLoginNuevo.setEmail(email);
                                 break;
                             case "2":
-                                System.out.print("Introduce la nueva contraseña: ");
-                                contraseña = input.nextLine();
-                                personaLoginNuevo.setContraseña(contraseña);
+                                System.out.print("Introduce la nueva contrasenia: ");
+                                contrasenia = input.nextLine();
+                                personaLoginNuevo.setContrasenia(contrasenia);
                                 break;
                             case "3":
                                 System.out.print("Introduce el nuevo dni: ");
@@ -511,7 +511,7 @@ public class Administrador extends Persona {
                         System.out.println("\n\n----Modificar un Médico----");
                         System.out.print(
                             "1 - Email\n" +
-                            "2 - Contraseña\n" +
+                            "2 - Contrasenia\n" +
                             "3 - DNI\n" +
                             "4 - Nombre\n" +
                             "5 - Apellidos\n" +
@@ -531,9 +531,9 @@ public class Administrador extends Persona {
                                 personaLoginNuevo.setEmail(email);
                                 break;
                             case "2":
-                                System.out.print("Introduce la nueva contraseña: ");
-                                contraseña = input.nextLine();
-                                personaLoginNuevo.setContraseña(contraseña);
+                                System.out.print("Introduce la nueva contrasenia: ");
+                                contrasenia = input.nextLine();
+                                personaLoginNuevo.setContrasenia(contrasenia);
                                 break;
                             case "3":
                                 System.out.print("Introduce el nuevo dni: ");
@@ -593,7 +593,7 @@ public class Administrador extends Persona {
                         System.out.println("\n\n----Modificar un Paciente----");
                         System.out.print(
                                 "1 - Email\n" +
-                                        "2  - Contraseña\n" +
+                                        "2  - Contrasenia\n" +
                                         "3  - DNI\n" +
                                         "4  - Nombre\n" +
                                         "5  - Apellidos\n" +
@@ -616,9 +616,9 @@ public class Administrador extends Persona {
                                 personaLoginNuevo.setEmail(email);
                                 break;
                             case "2":
-                                System.out.print("Introduce la nueva contraseña: ");
-                                contraseña = input.nextLine();
-                                personaLoginNuevo.setContraseña(contraseña);
+                                System.out.print("Introduce la nueva contrasenia: ");
+                                contrasenia = input.nextLine();
+                                personaLoginNuevo.setContrasenia(contrasenia);
                                 break;
                             case "3":
                                 System.out.print("Introduce el nuevo dni: ");
@@ -693,7 +693,7 @@ public class Administrador extends Persona {
                         System.out.println("\n\n----Modificar un Recepcionista----");
                         System.out.print(
                                 "1 - Email\n" +
-                                        "2 - Contraseña\n" +
+                                        "2 - Contrasenia\n" +
                                         "3 - DNI\n" +
                                         "4 - Nombre\n" +
                                         "5 - Apellidos\n" +
@@ -712,9 +712,9 @@ public class Administrador extends Persona {
                                 personaLoginNuevo.setEmail(email);
                                 break;
                             case "2":
-                                System.out.print("Introduce la nueva contraseña: ");
-                                contraseña = input.nextLine();
-                                personaLoginNuevo.setContraseña(contraseña);
+                                System.out.print("Introduce la nueva contrasenia: ");
+                                contrasenia = input.nextLine();
+                                personaLoginNuevo.setContrasenia(contrasenia);
                                 break;
                             case "3":
                                 System.out.print("Introduce el nuevo dni: ");

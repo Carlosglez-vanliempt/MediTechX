@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Principal {
 
-    public static Persona iniciarSesion (String email, String contraseña){
+    public static Persona iniciarSesion (String email, String contrasenia){
         Gson gson = new Gson();
         int inicioSesion = 0;
         Persona persona = null;
@@ -18,7 +18,7 @@ public class Principal {
             while ((linea = br.readLine()) != null && inicioSesion==0) {
                 persona = gson.fromJson(linea, Persona.class);
                 if (persona.getEmail().toLowerCase().equals(email)){
-                    if (persona.getContraseña().equals(contraseña)){
+                    if (persona.getContrasenia().equals(contrasenia)){
                         String ruta="";
                         switch (persona.getGenero()){ //Seleccionar la ruta
                             case "1":
@@ -61,10 +61,10 @@ public class Principal {
                                 }
                                 break;
                         }
-                        System.out.println("Has iniciado sesión correctamente");
+                        System.out.println("Has iniciado sesion correctamente");
                         inicioSesion = 1;
                     }else {
-                        System.out.println("La contraseña introducida no es correcta");
+                        System.out.println("La contrasenia introducida no es correcta");
                         inicioSesion = 2;
                     }
                 }
@@ -78,7 +78,7 @@ public class Principal {
         if(inicioSesion==1){
             return persona;
         }
-        System.out.println("Los datos de inicio de sesión no son correctos");
+        System.out.println("Los datos de inicio de sesion no son correctos");
         return null;
     }
 
@@ -86,17 +86,17 @@ public class Principal {
 
         Scanner input = new Scanner(System.in);
         Persona usuarioActivo = null;
-        String email, contraseña;
+        String email, contrasenia;
 
-        System.out.println("   --- Bienvenido a MediTech (versión 1.0) --- \n");
+        System.out.println("   --- Bienvenido a MediTech (version 1.0) --- \n");
         do{
             //Solicitamos los datos de inicio de sesion
             System.out.print("Introduce el email:");
             email = (input.nextLine()).toLowerCase();
-            System.out.print("Introduce la contraseña:");
-            contraseña = input.nextLine();
+            System.out.print("Introduce la contrasenia:");
+            contrasenia = input.nextLine();
 
-            usuarioActivo = iniciarSesion(email, contraseña);
+            usuarioActivo = iniciarSesion(email, contrasenia);
 
         }while (usuarioActivo==null);
         usuarioActivo.Menu();

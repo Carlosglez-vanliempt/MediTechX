@@ -83,7 +83,7 @@ public class Medico extends Persona{
         //Obtenemos el DNI del medico
         String dniMedico = getDni();
         //Obtenemos el día actual para buscar en las citas de este día
-        int año = LocalDateTime.now().getYear();
+        int anio = LocalDateTime.now().getYear();
         int mes =LocalDateTime.now().getMonthValue();
         int dia = LocalDateTime.now().getDayOfMonth();
         String ruta = "src/Ficheros/Citas/";
@@ -97,7 +97,7 @@ public class Medico extends Persona{
         }else {
             ruta += mes+"-";
         }
-        ruta+= año+".jsonl";
+        ruta+= anio+".jsonl";
         //Compruebo si existe un fichero de citas para este día
         if (new File(ruta).exists()){
             ArrayList <Cita> citas = new ArrayList<Cita>();
@@ -159,7 +159,7 @@ public class Medico extends Persona{
         String dniPaciente = input.nextLine();
 
         //Obtenemos el día actual para buscar en las citas hasta este día
-        int añoActual = LocalDateTime.now().getYear();
+        int anioActual = LocalDateTime.now().getYear();
         int mesActual =LocalDateTime.now().getMonthValue();
         int diaActual = LocalDateTime.now().getDayOfMonth();
         String fechaActual="";
@@ -169,25 +169,25 @@ public class Medico extends Persona{
             fechaActual += diaActual+"-";
         }
         if (mesActual < 10){
-            fechaActual += "0"+mesActual+"-"+añoActual;
+            fechaActual += "0"+mesActual+"-"+anioActual;
         }else {
-            fechaActual += mesActual+"-"+añoActual;
+            fechaActual += mesActual+"-"+anioActual;
         }
 
         //El primer día de funcionamiento del programa es el 28/04/2021
         //Buscaremos todas las citas del paciente desde ese día hasta el actual.
         int dia = 28;
         int mes = 4;
-        int año = 2021;
-        String fecha = dia+"-"+mes+"-"+año;
+        int anio = 2021;
+        String fecha = dia+"-"+mes+"-"+anio;
         System.out.println(fechaActual);
         while (!fechaActual.equals(fecha)){
             imprimirHistorial(fecha,dniPaciente);
             String[] separarFecha = fecha.split("-");
             dia = Integer.parseInt(separarFecha[0]);
             mes = Integer.parseInt(separarFecha[1]);
-            año = Integer.parseInt(separarFecha[2]);
-            fecha = siguienteDia(dia,mes,año);
+            anio = Integer.parseInt(separarFecha[2]);
+            fecha = siguienteDia(dia,mes,anio);
         }
     }
 
@@ -218,14 +218,14 @@ public class Medico extends Persona{
         }
     }
 
-    public String siguienteDia(int dia, int mes, int año){
+    public String siguienteDia(int dia, int mes, int anio){
         boolean bisiesto = false;
         boolean mismoAnio = false;
         boolean mismoMes = false;
         int maxDias = 0;
-        //año
-        if(año == LocalDateTime.now().getYear()) mismoAnio = true;
-        if ((año % 4 == 0) && ((año % 100 != 0) || (año % 400 == 0)) ) bisiesto = true;
+        //anio
+        if(anio == LocalDateTime.now().getYear()) mismoAnio = true;
+        if ((anio % 4 == 0) && ((anio % 100 != 0) || (anio % 400 == 0)) ) bisiesto = true;
         //mes
         if (mismoAnio && (mes == LocalDateTime.now().getMonthValue())){
             mismoMes = true;
@@ -256,7 +256,7 @@ public class Medico extends Persona{
                     mes++;
                 }else {
                     mes=1;
-                    año++;
+                    anio++;
                 }
             }
         }
@@ -268,9 +268,9 @@ public class Medico extends Persona{
             fecha += dia+"-";
         }
         if (mes < 10){
-            fecha += "0"+mes+"-"+año;
+            fecha += "0"+mes+"-"+anio;
         }else {
-            fecha += mes+"-"+año;
+            fecha += mes+"-"+anio;
         }
         return fecha;
     }
@@ -280,7 +280,7 @@ public class Medico extends Persona{
         //Obtenemos el DNI del medico
         String dniMedico = this.getDni();
         //Obtenemos el día actual para buscar en las citas de este día
-        int año = LocalDateTime.now().getYear();
+        int anio = LocalDateTime.now().getYear();
         int mes =LocalDateTime.now().getMonthValue();
         int dia = LocalDateTime.now().getDayOfMonth();
         String ruta = "src/Ficheros/Citas/";
@@ -294,7 +294,7 @@ public class Medico extends Persona{
         }else {
             ruta += mes+"-";
         }
-        ruta+= año+".jsonl";
+        ruta+= anio+".jsonl";
         System.out.println(ruta);
         //Compruebo si existe un fichero de citas para este día
         if (new File(ruta).exists()){
@@ -317,7 +317,7 @@ public class Medico extends Persona{
     }
 
     public void diagnosticarCita(Cita cita) {
-        int año = LocalDateTime.now().getYear();
+        int anio = LocalDateTime.now().getYear();
         int mes =LocalDateTime.now().getMonthValue();
         int dia = LocalDateTime.now().getDayOfMonth();
         String ruta = "src/Ficheros/Citas/";
@@ -331,7 +331,7 @@ public class Medico extends Persona{
         }else {
             ruta += mes+"-";
         }
-        ruta+= año+".jsonl";
+        ruta+= anio+".jsonl";
 
         Scanner input = new Scanner(System.in);
         //Solicito los datos del diagnostico de la cita

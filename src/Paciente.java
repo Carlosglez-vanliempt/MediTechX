@@ -119,7 +119,7 @@ public class Paciente extends Persona{
         String dniPaciente = getDni();
 
         //Obtenemos el día actual para buscar en las citas hasta este día
-        int añoActual = LocalDateTime.now().getYear();
+        int anioActual = LocalDateTime.now().getYear();
         int mesActual =LocalDateTime.now().getMonthValue();
         int diaActual = LocalDateTime.now().getDayOfMonth();
         String fechaActual="";
@@ -129,25 +129,25 @@ public class Paciente extends Persona{
             fechaActual += diaActual+"-";
         }
         if (mesActual < 10){
-            fechaActual += "0"+mesActual+"-"+añoActual;
+            fechaActual += "0"+mesActual+"-"+anioActual;
         }else {
-            fechaActual += mesActual+"-"+añoActual;
+            fechaActual += mesActual+"-"+anioActual;
         }
 
         //El primer día de funcionamiento del programa es el 28/04/2021
         //Buscaremos todas las citas del paciente desde ese día hasta el actual.
         int dia = 28;
         int mes = 4;
-        int año = 2021;
-        String fecha = dia+"-"+mes+"-"+año;
+        int anio = 2021;
+        String fecha = dia+"-"+mes+"-"+anio;
 
         while (!fecha.equals(fechaActual)){
             imprimirHistorial(fecha,dniPaciente);
             String[] separarFecha = fecha.split("-");
             dia = Integer.parseInt(separarFecha[0]);
             mes = Integer.parseInt(separarFecha[1]);
-            año = Integer.parseInt(separarFecha[2]);
-            fecha = siguienteDia(dia,mes,año);
+            anio = Integer.parseInt(separarFecha[2]);
+            fecha = siguienteDia(dia,mes,anio);
         }
     }
 
@@ -176,14 +176,14 @@ public class Paciente extends Persona{
         }
     }
 
-    public String siguienteDia(int dia, int mes, int año){
+    public String siguienteDia(int dia, int mes, int anio){
         boolean bisiesto = false;
         boolean mismoAnio = false;
         boolean mismoMes = false;
         int maxDias = 0;
-        //año
-        if(año == LocalDateTime.now().getYear()) mismoAnio = true;
-        if ((año % 4 == 0) && ((año % 100 != 0) || (año % 400 == 0)) ) bisiesto = true;
+        //anio
+        if(anio == LocalDateTime.now().getYear()) mismoAnio = true;
+        if ((anio % 4 == 0) && ((anio % 100 != 0) || (anio % 400 == 0)) ) bisiesto = true;
         //mes
         if (mismoAnio && (mes == LocalDateTime.now().getMonthValue())){
             mismoMes = true;
@@ -214,7 +214,7 @@ public class Paciente extends Persona{
                     mes++;
                 }else {
                     mes=1;
-                    año++;
+                    anio++;
                 }
             }
         }
@@ -226,9 +226,9 @@ public class Paciente extends Persona{
             fecha += dia+"-";
         }
         if (mes < 10){
-            fecha += "0"+mes+"-"+año;
+            fecha += "0"+mes+"-"+anio;
         }else {
-            fecha += mes+"-"+año;
+            fecha += mes+"-"+anio;
         }
         return fecha;
     }
@@ -302,7 +302,7 @@ public class Paciente extends Persona{
         String dniPaciente = getDni();
 
         //Obtenemos el día actual para buscar en las citas desde este día
-        int año = LocalDateTime.now().getYear();
+        int anio = LocalDateTime.now().getYear();
         int mes =LocalDateTime.now().getMonthValue();
         int dia = LocalDateTime.now().getDayOfMonth();
         String fecha="";
@@ -312,9 +312,9 @@ public class Paciente extends Persona{
             fecha += dia+"-";
         }
         if (mes < 10){
-            fecha += "0"+mes+"-"+año;
+            fecha += "0"+mes+"-"+anio;
         }else {
-            fecha += mes+"-"+año;
+            fecha += mes+"-"+anio;
         }
         Boolean citaEncontrada = false;
 
@@ -327,8 +327,8 @@ public class Paciente extends Persona{
             String[] separarFecha = fecha.split("-");
             dia = Integer.parseInt(separarFecha[0]);
             mes = Integer.parseInt(separarFecha[1]);
-            año = Integer.parseInt(separarFecha[2]);
-            fecha = siguienteDia(dia,mes,año);
+            anio = Integer.parseInt(separarFecha[2]);
+            fecha = siguienteDia(dia,mes,anio);
         }
         if(citaEncontrada){
             System.out.println("Estas son todas las citas que tienes en los próximos 3 meses.");
